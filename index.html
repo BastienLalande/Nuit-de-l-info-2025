@@ -6,15 +6,14 @@
     <title>Rétro Gaming Style</title>
     <link rel="stylesheet" href="style.css">
 </head>
-<body>
+<body background="images\images.jpeg">
     <header class="header">
         <div class="header-content">
             <div class="logo">RETRO GAME</div>
             <nav>
                 <ul class="nav-menu">
-                    <li><a href="#">Home</a></li>
-                    <li><a href="#">Games</a></li>
-                    <li><a href="#">Scores</a></li>
+                    <li><a href="index.html">Home</a></li>
+                    <li><a href="game.html">Games</a></li>
                     <li><a href="#">About</a></li>
                 </ul>
             </nav>
@@ -22,31 +21,46 @@
         </div>
     </header>
 
-    <div class="raindow-Circle">
-           <div class="blue-circle"></div>
-            <div class="red-circle"></div>
-            <div class="purple-circle"></div>
-            <div class="green-circle"></div>
-    
-    
-    
-    
-    
+    <div class="parallax-container">
+        <div class="blue-circle"></div>
+        <div class="red-circle"></div>
+        <div class="purple-circle" ></div>
+        <div class="green-circle"></div>
+    </div>
+
+    <div class="content">
+        <div class="text-box pink">
+            Découvrez NIRD : Le Numérique Inclusif, Responsable et Durable. Face aux enjeux écologiques et à la dépendance technologique, un collectif d'enseignants a créé la démarche NIRD. Son objectif est clair : engager votre établissement scolaire dans une transition progressive vers un numérique libre et éco-citoyen. C'est l'opportunité de maîtriser vos outils, d'offrir un accès équitable à tous les élèves et de faire de la sobriété numérique un levier pédagogique puissant.
         </div>
 
+        <div class="text-box green">
+            Le Cœur de NIRD : Logiciels Libres et Reconditionnement. La démarche NIRD repose sur des actions concrètes : lutter contre la fracture numérique en reconditionnant le matériel et en privilégiant l'installation de systèmes GNU/Linux. En adoptant les Logiciels Libres, vous réduisez les coûts de licences, prolongez la vie de vos équipements et formez des citoyens conscients et acteurs du monde numérique, et non plus de simples utilisateurs passifs.
+        </div>
 
-    <div class="text-box pink">
-Lorem ipsum dolor sit amet consectetur adipisicing elit. Sequi accusantium vitae officiis repudiandae provident? Animi voluptatibus aspernatur ducimus ipsum. Esse expedita praesentium dicta sed exercitationem facere rerum obcaecati provident quod.
+        <div class="text-box cyan">
+            Lorem ipsum dolor sit amet consectetur adipisicing elit. Dolores amet eaque perferendis mollitia quae reprehenderit dolor iusto eveniet, officiis sunt inventore ex nobis deserunt magnam impedit recusandae itaque perspiciatis nesciunt?
+        </div>
+
+        <div class="text-box yellow">
+            Lorem ipsum dolor sit amet consectetur adipisicing elit. Voluptatum quidem quisquam deserunt illum error, maiores necessitatibus fugiat nemo aliquid dolorum veniam ipsam consectetur hic quaerat tempore amet blanditiis dolorem reprehenderit.
+        </div>
+
+        <div class="text-box red">
+            Lorem ipsum dolor sit amet consectetur adipisicing elit. Laborum unde nisi perspiciatis cum repudiandae mollitia illo, quod facilis veniam ipsum beatae voluptatibus impedit dolore consequatur rerum eum necessitatibus quisquam numquam.
+        </div>
+
+        <div class="text-box blue">
+            Lorem ipsum dolor sit amet consectetur adipisicing elit. Consectetur adipisci quas doloremque eum rerum delectus nemo dignissimos expedita veniam provident, sequi perferendis temporibus quae repellat error aliquam tempore porro ex.
+        </div>
+
     </div>
 
-    <div class="text-box green">
-        Lorem ipsum dolor sit amet consectetur adipisicing elit. Consequuntur eius labore illo illum fuga earum cum? Consequuntur dolor, qui quasi, impedit debitis vitae nam nulla repellendus nisi hic vel non!
-    </div>
-
-    <div class="text-box cyan">
-        Lorem ipsum dolor sit amet consectetur adipisicing elit. Dolores amet eaque perferendis mollitia quae reprehenderit dolor iusto eveniet, officiis sunt inventore ex nobis deserunt magnam impedit recusandae itaque perspiciatis nesciunt?
-    </div>
-
-    <div class="sad-face"></div>
+    <script>
+        window.addEventListener('scroll', function() {
+            const parallaxContainer = document.querySelector('.parallax-container');
+            const scrolled = window.pageYOffset;
+            parallaxContainer.style.transform = 'translateY(' + (scrolled * 0.4) + 'px)';
+        });
+    </script>
 </body>
 </html>

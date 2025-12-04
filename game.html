@@ -1,0 +1,287 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Konami Code - Rétro Gaming</title>
+    <link rel="stylesheet" href="style.css">
+    <style>
+        .konami-container {
+            position: relative;
+            z-index: 10;
+            padding: 120px 40px 60px;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .konami-title {
+            font-size: 64px;
+            font-weight: bold;
+            color: #00ffff;
+            text-transform: uppercase;
+            letter-spacing: 6px;
+            text-align: center;
+            margin-bottom: 20px;
+            text-shadow: 0 0 20px #00ffff, 0 0 40px #00ffff, 0 0 60px #00ffff;
+            animation: pulse 2s ease-in-out infinite;
+        }
+
+        @keyframes pulse {
+            0%, 100% { opacity: 1; }
+            50% { opacity: 0.7; }
+        }
+
+        .konami-subtitle {
+            font-size: 24px;
+            color: #ff00ff;
+            text-align: center;
+            margin-bottom: 60px;
+            text-shadow: 0 0 10px #ff00ff;
+        }
+
+        .code-display {
+            background: rgba(20, 20, 20, 0.95);
+            border: 4px solid #00ff00;
+            border-radius: 20px;
+            padding: 40px;
+            margin: 40px auto;
+            max-width: 800px;
+            box-shadow: 0 0 30px rgba(0, 255, 0, 0.5), inset 0 0 20px rgba(0, 255, 0, 0.1);
+        }
+
+        .code-sequence {
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+            gap: 15px;
+            margin: 30px 0;
+        }
+
+        .key {
+            background: linear-gradient(145deg, #2a2a2a, #1a1a1a);
+            border: 3px solid #ff00ff;
+            border-radius: 10px;
+            padding: 20px 25px;
+            font-size: 24px;
+            font-weight: bold;
+            color: #ff0000;
+            text-shadow: 0 0 10px #ff00ff;
+            box-shadow: 0 0 15px rgba(255, 0, 255, 0.5);
+            animation: glow 3s ease-in-out infinite;
+            animation-delay: calc(var(--i) * 0.2s);
+        }
+
+        @keyframes glow {
+            0%, 100% { box-shadow: 0 0 15px rgba(255, 0, 255, 0.5); }
+            50% { box-shadow: 0 0 30px rgba(255, 0, 255, 0.9); }
+        }
+
+        .info-section {
+            background: rgba(30, 30, 30, 0.9);
+            border: 3px solid #ffff00;
+            border-radius: 15px;
+            padding: 30px;
+            margin: 30px auto;
+            max-width: 900px;
+            box-shadow: 0 0 20px rgba(255, 255, 0, 0.3);
+        }
+
+        .info-section h2 {
+            color: #ffff00;
+            font-size: 32px;
+            margin-bottom: 20px;
+            text-shadow: 0 0 15px #ffff00;
+        }
+
+        .info-section p {
+            color: #ffffff;
+            font-size: 18px;
+            line-height: 1.8;
+            margin-bottom: 15px;
+        }
+
+        .info-section ul {
+            color: #ffffff;
+            font-size: 18px;
+            line-height: 2;
+            margin-left: 30px;
+        }
+
+        .info-section li {
+            margin-bottom: 10px;
+        }
+
+        .fun-fact {
+            background: rgba(40, 20, 40, 0.9);
+            border: 3px solid #ff0066;
+            border-radius: 15px;
+            padding: 25px;
+            margin: 30px auto;
+            max-width: 900px;
+            box-shadow: 0 0 20px rgba(255, 0, 102, 0.4);
+        }
+
+        .fun-fact h3 {
+            color: #ff0066;
+            font-size: 28px;
+            margin-bottom: 15px;
+            text-shadow: 0 0 10px #ff0066;
+        }
+
+        .fun-fact p {
+            color: #ffffff;
+            font-size: 18px;
+            line-height: 1.8;
+        }
+
+        .arrow-symbol {
+            color: #00ffff;
+        }
+
+        .parallax-container-game {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: 1;
+            pointer-events: none;
+        }
+
+        .game-circle {
+            position: absolute;
+            border-radius: 50%;
+        }
+
+        .circle-1 {
+            top: 20%;
+            left: 10%;
+            width: 400px;
+            height: 400px;
+            background: radial-gradient(circle, transparent 0%, transparent 37.5%, #ff00ff 37.5%, #ff00ff 100%);
+            box-shadow: 0 0 60px rgba(255, 0, 255, 0.6);
+        }
+
+        .circle-2 {
+            top: 50%;
+            right: 15%;
+            width: 500px;
+            height: 500px;
+            background: radial-gradient(circle, transparent 0%, transparent 37.5%, #00ffff 37.5%, #00ffff 100%);
+            box-shadow: 0 0 60px rgba(0, 255, 255, 0.6);
+        }
+
+        .circle-3 {
+            bottom: 10%;
+            left: 20%;
+            width: 450px;
+            height: 450px;
+            background: radial-gradient(circle, transparent 0%, transparent 37.5%, #ffff00 37.5%, #ffff00 100%);
+            box-shadow: 0 0 60px rgba(255, 255, 0, 0.6);
+        }
+    </style>
+</head>
+<body background="images\images.jpeg">
+    <header class="header">
+        <div class="header-content">
+            <div class="logo">RETRO GAME</div>
+            <nav>
+                <ul class="nav-menu">
+                    <li><a href="index.html">Home</a></li>
+                    <li><a href="game.html">Games</a></li>
+                    <li><a href="#">About</a></li>
+                </ul>
+            </nav>
+            <button class="login-btn">Login</button>
+        </div>
+    </header>
+
+    <div class="parallax-container-game">
+        <div class="game-circle circle-1"></div>
+        <div class="game-circle circle-2"></div>
+        <div class="game-circle circle-3"></div>
+    </div>
+
+    <div class="konami-container">
+        <h1 class="konami-title">KONAMI CODE</h1>
+        <p class="konami-subtitle">Le Code Secret Légendaire</p>
+
+        <div class="code-display">
+            <h2 style="color: #00ff00; text-align: center; font-size: 28px; margin-bottom: 20px; text-shadow: 0 0 15px #00ff00;">LA SÉQUENCE ORIGINALE</h2>
+            <div class="code-sequence">
+                <div class="key" style="--i: 0"><span class="arrow-symbol">↑</span></div>
+                <div class="key" style="--i: 1"><span class="arrow-symbol">↑</span></div>
+                <div class="key" style="--i: 2"><span class="arrow-symbol">↓</span></div>
+                <div class="key" style="--i: 3"><span class="arrow-symbol">↓</span></div>
+                <div class="key" style="--i: 4"><span class="arrow-symbol">←</span></div>
+                <div class="key" style="--i: 5"><span class="arrow-symbol">→</span></div>
+                <div class="key" style="--i: 6"><span class="arrow-symbol">←</span></div>
+                <div class="key" style="--i: 7"><span class="arrow-symbol">→</span></div>
+                <div class="key" style="--i: 8">B</div>
+                <div class="key" style="--i: 9">A</div>
+            </div>
+            <p style="color: #ffffff; text-align: center; font-size: 18px; margin-top: 20px;">
+                Puis appuyer sur <strong style="color: #ff00ff;">START</strong>
+            </p>
+        </div>
+
+        <div class="info-section">
+            <h2>🎮 Qu'est-ce que le Konami Code ?</h2>
+            <p>
+                Le Konami Code est l'un des codes de triche les plus célèbres de l'histoire du jeu vidéo. Créé par Kazuhisa Hashimoto en 1986, ce code est devenu une véritable légende et un symbole de la culture gaming rétro.
+            </p>
+            <p>
+                Initialement conçu pour le jeu <strong style="color: #00ffff;">Gradius</strong> sur NES, ce code permettait aux développeurs de tester facilement le jeu en obtenant toutes les power-ups. Il a ensuite été laissé dans la version finale et est devenu viral parmi les joueurs.
+            </p>
+        </div>
+
+        <div class="fun-fact">
+            <h3>💡 Le Saviez-vous ?</h3>
+            <p>
+                Le Konami Code est devenu si populaire qu'il a été intégré dans des centaines de jeux, sites web et applications au fil des décennies. Même aujourd'hui, de nombreux sites web l'utilisent comme Easter Egg pour débloquer du contenu secret !
+            </p>
+        </div>
+
+        <div class="info-section">
+            <h2>🕹️ Jeux Célèbres Utilisant le Code</h2>
+            <ul>
+                <li><strong style="color: #ff00ff;">Contra (1988)</strong> - Donne 30 vies au lieu de 3</li>
+                <li><strong style="color: #00ffff;">Gradius (1986)</strong> - Active toutes les power-ups</li>
+                <li><strong style="color: #ffff00;">Castlevania: Symphony of the Night</strong> - Débloquer du contenu bonus</li>
+                <li><strong style="color: #00ff00;">Metal Gear Solid</strong> - Active le mode démo</li>
+                <li><strong style="color: #ff0066;">Dance Dance Revolution</strong> - Débloquer des chansons secrètes</li>
+            </ul>
+        </div>
+
+        <div class="fun-fact">
+            <h3>🌟 Impact Culturel</h3>
+            <p>
+                Le Konami Code a transcendé le monde du jeu vidéo pour devenir un véritable phénomène de culture pop. On le retrouve dans des films, des séries TV, des bandes dessinées, et même sur certains sites web modernes comme easter egg. C'est un symbole universel de la nostalgie gaming des années 80-90.
+            </p>
+        </div>
+
+        <div class="info-section">
+            <h2>🎯 Comment l'Utiliser ?</h2>
+            <p>
+                Pour utiliser le Konami Code dans un jeu compatible :
+            </p>
+            <ul>
+                <li>Attendez d'être sur l'écran titre ou pendant le gameplay</li>
+                <li>Entrez la séquence exacte : ↑ ↑ ↓ ↓ ← → ← → B A</li>
+                <li>Appuyez sur START (ou parfois SELECT puis START pour 2 joueurs)</li>
+                <li>Profitez des bonus débloqués !</li>
+            </ul>
+        </div>
+    </div>
+
+    <script>
+        window.addEventListener('scroll', function() {
+            const parallaxContainer = document.querySelector('.parallax-container-game');
+            if (parallaxContainer) {
+                const scrolled = window.pageYOffset;
+                parallaxContainer.style.transform = 'translateY(' + (scrolled * 0.4) + 'px)';
+            }
+        });
+    </script>
+</body>
+</html>
