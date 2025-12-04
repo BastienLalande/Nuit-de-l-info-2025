@@ -4,168 +4,24 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Rétro Gaming Style</title>
-    <style>
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
-
-        body {
-            background: linear-gradient(135deg, #1a1a1a 0%, #2d2d2d 100%);
-            min-height: 100vh;
-            overflow: hidden;
-            font-family: 'Courier New', monospace;
-            position: relative;
-        }
-
-        .rainbow-circle {
-            position: absolute;
-            top: 50%;
-            left: 50%;
-            transform: translate(-50%, -50%);
-            width: 600px;
-            height: 600px;
-            border-radius: 50%;
-            background: conic-gradient(
-                from 0deg,
-                #ff0000 0deg,
-                #ff0000 45deg,
-                #00ffff 45deg,
-                #00ffff 90deg,
-                #00ff00 90deg,
-                #00ff00 135deg,
-                #ff00ff 135deg,
-                #ff00ff 180deg,
-                #ff0000 180deg,
-                #ff0000 225deg,
-                #00ffff 225deg,
-                #00ffff 270deg,
-                #00ff00 270deg,
-                #00ff00 315deg,
-                #ff00ff 315deg,
-                #ff00ff 360deg
-            );
-            animation: rotate 20s linear infinite;
-            z-index: 1;
-        }
-
-        .rainbow-circle::before {
-            content: '';
-            position: absolute;
-            top: 50%;
-            left: 50%;
-            transform: translate(-50%, -50%);
-            width: 85%;
-            height: 85%;
-            background: #2d2d2d;
-            border-radius: 50%;
-        }
-
-        @keyframes rotate {
-            from { transform: translate(-50%, -50%) rotate(0deg); }
-            to { transform: translate(-50%, -50%) rotate(360deg); }
-        }
-
-        .text-box {
-            position: absolute;
-            background: rgba(40, 40, 40, 0.95);
-            border-radius: 20px;
-            padding: 30px;
-            color: #ffffff;
-            font-size: 16px;
-            line-height: 1.6;
-            max-width: 500px;
-            z-index: 10;
-            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.5);
-            animation: float 3s ease-in-out infinite;
-        }
-
-        .text-box.pink {
-            border: 3px solid #ff00ff;
-            top: 15%;
-            left: 8%;
-        }
-
-        .text-box.green {
-            border: 3px solid #00ff00;
-            bottom: 15%;
-            right: 8%;
-        }
-
-        .text-box.cyan {
-            border: 3px solid #00ffff;
-            top: 40%;
-            right: 5%;
-        }
-
-        @keyframes float {
-            0%, 100% { transform: translateY(0px); }
-            50% { transform: translateY(-10px); }
-        }
-
-        .tux {
-            position: absolute;
-            bottom: 30px;
-            left: 30px;
-            width: 80px;
-            height: 80px;
-            z-index: 15;
-        }
-
-        .sad-face {
-            position: absolute;
-            top: 30px;
-            right: 30px;
-            width: 60px;
-            height: 60px;
-            background: #ff0000;
-            border-radius: 50%;
-            z-index: 15;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-        }
-
-        .sad-face::before {
-            content: '☹';
-            font-size: 40px;
-            color: #000;
-        }
-
-        .invaders {
-            position: absolute;
-            top: 20px;
-            left: 20px;
-            display: flex;
-            flex-wrap: wrap;
-            gap: 10px;
-            width: 200px;
-            z-index: 15;
-        }
-
-        .invader {
-            width: 30px;
-            height: 30px;
-            background: linear-gradient(to bottom, #ff00ff 0%, #5500ff 100%);
-            clip-path: polygon(
-                20% 0%, 80% 0%, 
-                80% 20%, 100% 20%, 100% 40%, 80% 40%,
-                80% 60%, 100% 60%, 100% 80%, 80% 80%,
-                80% 100%, 20% 100%, 20% 80%, 0% 80%,
-                0% 60%, 20% 60%, 20% 40%, 0% 40%,
-                0% 20%, 20% 20%
-            );
-            animation: invaderMove 2s ease-in-out infinite;
-        }
-
-        @keyframes invaderMove {
-            0%, 100% { transform: translateX(0); }
-            50% { transform: translateX(10px); }
-        }
-    </style>
+    <link rel="stylesheet" href="style.css">
 </head>
 <body>
+    <header class="header">
+        <div class="header-content">
+            <div class="logo">RETRO GAME</div>
+            <nav>
+                <ul class="nav-menu">
+                    <li><a href="#">Home</a></li>
+                    <li><a href="#">Games</a></li>
+                    <li><a href="#">Scores</a></li>
+                    <li><a href="#">About</a></li>
+                </ul>
+            </nav>
+            <button class="login-btn">Login</button>
+        </div>
+    </header>
+
     <div class="rainbow-circle"></div>
 
     <div class="text-box pink">
@@ -192,16 +48,6 @@
         qervc qdfxbvcqdwfxgcvqdfwxgvcqdfwxgvcqdwxfvc
     </div>
 
-    <div class="invaders">
-        <div class="invader"></div>
-        <div class="invader"></div>
-        <div class="invader"></div>
-        <div class="invader"></div>
-        <div class="invader"></div>
-        <div class="invader"></div>
-    </div>
-
-    <div class="tux">🐧</div>
     <div class="sad-face"></div>
 </body>
 </html>
