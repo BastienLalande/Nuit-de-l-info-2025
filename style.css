@@ -91,27 +91,105 @@ body {
     transform: translateY(0);
 }
 
-/* Circle */
-.rainbow-circle {
+
+
+.blue-circle {
     position: absolute;
-    top: 50%;
+    top: 115%;
     left: 50%;
     transform: translate(-50%, -50%);
-    width: 600px;
-    height: 600px;
+    width: 1200px;
+    height: 1200px;
     border-radius: 50%;
-    background: #0066ff;
+    background: #00f7ff;
+     box-shadow: 0 0 75PX rgba(0, 217, 255, 0.8);
     z-index: 1;
 }
 
-.rainbow-circle::before {
+.blue-circle::before {
     content: '';
     position: absolute;
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
-    width: 85%;
-    height: 85%;
+    width: 75%;
+    height: 75%;
+    background: #2d2d2d;
+    border-radius: 50%;
+}
+
+
+.red-circle {
+    position: absolute;
+    top: 120%;
+    left: 55%;
+    transform: translate(-50%, -50%);
+    width: 1200px;
+    height: 1200px;
+    border-radius: 50%;
+    background: #ff0000;
+    box-shadow: 0 0 75PX rgba(255, 0, 0, 0.8);
+    z-index: 2;
+}
+
+.red-circle::before {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 75%;
+    height: 75%;
+    background: #2d2d2d;
+    border-radius: 50%;
+}
+
+.purple-circle {
+    position: absolute;
+    top: 125%;
+    left: 60%;
+    transform: translate(-50%, -50%);
+    width: 1200px;
+    height: 1200px;
+    border-radius: 50%;
+    background: #c300ff;
+    box-shadow: 0 0 75PX rgba(195, 0, 255, 0.8);
+    z-index: 3;
+}
+
+.purple-circle::before {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 75%;
+    height: 75%;
+    background: #2d2d2d;
+    border-radius: 50%;
+}
+
+.green-circle {
+    position: absolute;
+    top: 130%;
+    left: 63%;
+    transform: translate(-50%, -50%);
+    width: 1200px;
+    height: 1200px;
+    border-radius: 50%;
+    background: #37ff00;
+    box-shadow: 0 0 75PX rgba(81, 255, 0, 0.8);
+    z-index: 3;
+}
+
+.green-circle::before {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 75%;
+    height: 75%;
     background: #2d2d2d;
     border-radius: 50%;
 }
@@ -139,8 +217,8 @@ body {
 
 .text-box.green {
     border: 3px solid #00ff00;
-    bottom: 15%;
-    right: 8%;
+    bottom: 5%;
+    right: 15%;
 }
 
 .text-box.cyan {
