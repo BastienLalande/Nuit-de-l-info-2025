@@ -1,0 +1,31 @@
+
+
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <title>Faille XSS - Démonstration</title>
+</head>
+
+<body style="background:#111; color:white; font-family:monospace">
+
+    <h1>💬 Démonstration d'une faille XSS</h1>
+
+    <p>Écris un message ci-dessous. Le site va l'afficher directement.</p>
+
+    <input id="msg" type="text" placeholder="Écris ici...">
+    <button onclick="afficher()">Envoyer</button>
+
+    <h2>📌 Message affiché :</h2>
+    <div id="zone" style="padding:10px; background:#222; border:1px solid #444;"></div>
+
+    <script>
+        function afficher() {
+            // ❌ FAILLE XSS : on met directement ce que l'utilisateur écrit dans innerHTML
+            document.getElementById("zone").innerHTML =
+                document.getElementById("msg").value;
+        }
+    </script>
+
+</body>
+</html>
