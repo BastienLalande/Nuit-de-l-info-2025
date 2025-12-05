@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <title>Challenge Injection JS</title>
+</head>
+<body style="background:#111; color:white; font-family:monospace">
+
+<h1>  arriveras-tu à trouver la page cachée ?</h1>
+<p>Indice : la page cachée s'appelle <b>hidden.html</b>.<br>
+À toi de trouver la solution pour y accéder !</p>
+
+<input id="pseudo" type="text" placeholder="Pseudo...">
+<input id="mdp" type="password" placeholder="Mot de passe..." style="margin-left:10px;">
+<button id="btnLogin">Login</button>
+
+<p id="err" style="color:red; margin-top:20px;"></p>
+
+<script>
+document.getElementById("btnLogin").addEventListener("click", function () {
+    const pseudo = document.getElementById("pseudo").value.trim();
+
+    // On vérifie si l'utilisateur a tenté de rediriger vers hidden.html
+    if (pseudo.includes("window.location") && pseudo.includes("hidden.html")) {
+        window.location.href = "hidden.html";
+        return;
+    }
+
+    document.getElementById("err").innerText =
+        "❌ Mauvaise solution. Tu dois injecter un script qui te redirige vers hidden.html.";
+});
+</script>
+
+</body>
+</html>
