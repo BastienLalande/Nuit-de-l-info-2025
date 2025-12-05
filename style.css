@@ -455,3 +455,128 @@ body {
         .pixel-4 { top: 80px; right: 20px; background: #00ffff; box-shadow: 0 0 10px #00ffff; }
         .pixel-5 { top: 100px; right: 20px; background: #00ffff; box-shadow: 0 0 10px #00ffff; }
         .pixel-6 { top: 120px; right: 20px; background: #00ffff; box-shadow: 0 0 10px #00ffff; }
+
+        .chat-container {
+            position: fixed;
+            right: 20px;          /* bas-droite */
+            bottom: 20px;
+            width: 64px;          /* bulle fermée */
+            height: 64px;
+            z-index: 1000;
+            background: #222831;
+            border-radius: 18px;
+            border: 2px solid #393e46;
+            overflow: hidden;
+            color: white;
+            display: grid;
+            grid-template-rows: auto 1fr auto; /* header / messages / input */
+            box-shadow: 0 12px 30px rgba(0,0,0,.28);
+            transition: width .25s ease, height .25s ease, border-radius .25s ease, box-shadow .25s ease;
+          }
+        
+          /* Icône quand réduit */
+          .chat-fab {
+            height: 100%;
+            display: grid;
+            place-items: center;
+            pointer-events: none;     /* ne bloque pas le hover */
+            font-size: 26px;
+          }
+        
+          /* Contenu détaillé */
+          .chat-header {
+            display: none;
+            padding: 10px 12px;
+            border-bottom: 1px solid #393e46;
+            font-weight: 600;
+            gap: 8px;
+            align-items: center;
+          }
+          .chat-header .dot {
+            width: 10px; height: 10px; border-radius: 50%; background:#22c55e; display:inline-block;
+          }
+        
+          .messages {
+            display: none;
+            height: 280px;
+            overflow-y: auto;
+            padding: 10px;
+            background: #393e46;
+          }
+          .msg {
+            margin: 8px 0;
+            padding: 8px 12px;
+            border-radius: 12px;
+            max-width: 80%;
+            line-height: 1.35;
+            word-wrap: break-word;
+            white-space: pre-wrap;
+          }
+          .user { background: #393e46; color: #fff; margin-left: auto; text-align: right; }
+          .bot  { background: #0558ff;  color: #fff; margin-right: auto; text-align: left; }
+        
+          .input-area {
+            display: none;
+            padding: 10px;
+            gap: 8px;
+            background: #1d222a;
+            border-top: 1px solid #393e46;
+          }
+          .input-area input[type="text"] {
+            flex: 1;
+            padding: 10px 12px;
+            border: 1px solid #393e46;
+            border-radius: 10px;
+            background: #151a20;
+            color: white;
+            outline: none;
+          }
+          .input-area button {
+            padding: 10px 14px;
+            background: #00d084;
+            border: none;
+            border-radius: 10px;
+            color: #062d1f;
+            font-weight: 700;
+            cursor: pointer;
+          }
+        
+          /* --- États : développer à :hover ou :focus-within --- */
+          .chat-container:hover,
+          .chat-container:focus-within,
+          .chat-container[aria-expanded="true"] {
+            width: min(360px, 92vw);
+            height: 420px;
+            border-radius: 18px;
+          }
+        
+          /* Quand réduit : cacher messages + input */
+          .chat-container:not(:hover):not(:focus-within):not([aria-expanded="true"]) .messages,
+          .chat-container:not(:hover):not(:focus-within):not([aria-expanded="true"]) .input-area,
+          .chat-container:not(:hover):not(:focus-within):not([aria-expanded="true"]) .chat-header {
+            display: none;
+          }
+        
+          /* Quand agrandi : montrer contenu, masquer l’icône */
+          .chat-container:hover .chat-fab,
+          .chat-container:focus-within .chat-fab,
+          .chat-container[aria-expanded="true"] .chat-fab {
+            display: none;
+          }
+          .chat-container:hover .messages,
+          .chat-container:hover .input-area,
+          .chat-container:hover .chat-header,
+          .chat-container:focus-within .messages,
+          .chat-container:focus-within .input-area,
+          .chat-container:focus-within .chat-header,
+          .chat-container[aria-expanded="true"] .messages,
+          .chat-container[aria-expanded="true"] .input-area,
+          .chat-container[aria-expanded="true"] .chat-header {
+            display: block;
+          }
+        
+          /* Accessibilité focus visible sur le container */
+          .chat-container:focus {
+            outline: 3px solid #00d08455;
+            outline-offset: 2px;
+          }
