@@ -241,8 +241,7 @@ body {
 }
 
 #mot-cache {
- 
-  position: fixed;
+  position: absolute;
   bottom: 20px;
   right: -160px; 
   background-color: transparent; 

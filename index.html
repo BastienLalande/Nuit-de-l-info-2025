@@ -14,7 +14,6 @@
                 <ul class="nav-menu">
                     <li><a href="index.html">Home</a></li>
                     <li><a href="game.html">Games</a></li>
-                    <li><a href="#">About</a></li>
                 </ul>
             </nav>
             <button class="login-btn" onclick="window.location.href = 'failleXSS.html';">Login</button>
@@ -95,6 +94,27 @@ le réemploi est vital. Réduire l'impact écologique de nos outils est
 
     </div>
 
+    <section class="chat-container" role="dialog" aria-label="Chat" aria-expanded="false" tabindex="0" id="chat">
+        <!-- Bulle (icône) -->
+        <div class="chat-fab" aria-hidden="true">💬</div>
+      
+        <!-- En-tête quand agrandi -->
+        <header class="chat-header">
+          <span class="dot" aria-hidden="true"></span>
+          <span>🐈‍⬛🤤</span>
+          <span style="margin-left:auto; font-size:12px; opacity:.8">Chat'bruti</span>
+        </header>
+      
+        <!-- Messages -->
+        <div class="messages" id="messages" aria-live="polite" aria-relevant="additions"></div>
+      
+        <!-- Saisie -->
+        <form class="input-area" id="chat-form" autocomplete="off">
+          <input id="userInput" type="text" placeholder="Écris un message…" aria-label="Votre message" />
+          <button id="sendBtn" type="submit">Envoyer</button>
+        </form>
+      </section>
+
     <script>
         window.addEventListener('scroll', function() {
             const parallaxContainer = document.querySelector('.parallax-container');
@@ -102,5 +122,6 @@ le réemploi est vital. Réduire l'impact écologique de nos outils est
             parallaxContainer.style.transform = 'translateY(' + (scrolled * 0.4) + 'px)';
         });
     </script>
+    <script src="chatBot/chatBot.js"></script>
 </body>
 </html>
