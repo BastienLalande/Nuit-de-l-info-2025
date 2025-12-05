@@ -157,8 +157,6 @@
   flex-direction: column;
   align-items: center;
   z-index: 1000;
-  /* Garder le stage centré même lors du scroll */
-  /* Z-index conservé pour que le stage reste au-dessus du fond */
 }
 .stage[hidden] {
   display: none !important;
