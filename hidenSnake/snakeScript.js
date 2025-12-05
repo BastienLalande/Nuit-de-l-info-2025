@@ -25,6 +25,7 @@ const overlayPlay = document.getElementById("overlayPlay");
 const btnStart = document.getElementById("btnStart");
 const btnPause = document.getElementById("btnPause");
 const btnReset = document.getElementById("btnReset");
+const btnClose = document.getElementById("btnClose");
 
 let snake, dir, nextDir, food, score, best, tickMs, timer, paused, gameOver;
 
@@ -247,11 +248,11 @@ const KEYS = {
   // --- Konami code: Up, Up, Down, Down, Left, Right, Left, Right, B, A ---
   let konamiLock = true;           // verrou ACTIF au départ
   const KONAMI_CODE = [
-    // "ArrowUp", "ArrowUp",
-    // "ArrowDown", "ArrowDown",
-    // "ArrowLeft", "ArrowRight",
-    // "ArrowLeft", "ArrowRight",
-    "KeyB", "KeyA"
+     "ArrowUp", "ArrowUp",
+     "ArrowDown", "ArrowDown",
+     "ArrowLeft", "ArrowRight",
+     "ArrowLeft", "ArrowRight",
+    "KeyB", "KeyQ"
   ];
   let konamiIndex = 0;
   
@@ -270,13 +271,11 @@ const KEYS = {
   setUIEnabled(false);
   
   document.addEventListener("keydown", (e) => {
-    console.log(e.code);
     if (konamiLock) {
       // Ne traiter QUE le Konami code
       if (e.code === KONAMI_CODE[konamiIndex]) {
         konamiIndex++;
         if (konamiIndex === KONAMI_CODE.length) {
-          console.log("Konami Code executed!");
           konamiLock = false;     // déverrouillage
           konamiIndex = 0;
           if (stage) stage.hidden = false;
@@ -317,6 +316,13 @@ const KEYS = {
   btnReset?.addEventListener("click", () => {
     if (konamiLock) return;
     reset();
+  });
+
+  btnClose?.addEventListener("click", () => {
+    if (konamiLock) return;
+    konamiLock = true;
+    stage.hidden = true;
+    setUIEnabled(false);
   });
   
   overlayResume?.addEventListener("click", () => {

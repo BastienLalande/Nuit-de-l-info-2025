@@ -11,14 +11,6 @@
   
   * { box-sizing: border-box; }
   
-  html, body {
-    height: 100%;
-    margin: 0;
-    background: radial-gradient(1200px at 50% 0%, #0b1024 0%, var(--bg) 45%, #0a0f1f 100%);
-    color: var(--text);
-    font-family: system-ui, -apple-system, Segoe UI, Roboto, "Segoe UI", "Noto Sans", Arial, "Apple Color Emoji", "Segoe UI Emoji";
-  }
-  
   .app {
     min-height: 100%;
     display: grid;
@@ -103,8 +95,8 @@
   }
   
   canvas {
-    width: min(92vw, 640px);
-    height: min(92vw, 640px);
+    width: min(92vw, 400px);
+    height: min(92vw, 400px);
     max-width: 640px;
     max-height: 640px;
     border-radius: 14px;
@@ -114,11 +106,14 @@
   }
   
   .legend {
-    padding: 0 20px 18px;
+    padding: 18px;
     color: var(--muted);
     font-size: 13px;
+    background: #000;
+    border-radius: 10px;
+    border: 1px solid #1f2937;
   }
-  
+
   .status {
     position: absolute;
     inset: 0;
@@ -154,12 +149,16 @@
 
 .stage {
   position: absolute;
+  position: fixed;
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
   display: flex;
   flex-direction: column;
   align-items: center;
+  z-index: 1000;
+  /* Garder le stage centré même lors du scroll */
+  /* Z-index conservé pour que le stage reste au-dessus du fond */
 }
 .stage[hidden] {
   display: none !important;
