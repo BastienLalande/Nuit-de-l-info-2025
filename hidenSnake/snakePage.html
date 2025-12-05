@@ -1,0 +1,40 @@
+
+<!doctype html>
+<html lang="fr">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Snake</title>
+  <link rel="stylesheet" href="snakeStyle.css">
+</head>
+<body>
+        
+      <div id="stage" class="stage">
+        <div class="meta">
+            <span class="kpi">Score&nbsp;<b id="score">0</b></span>
+            <span class="kpi">Meilleur score&nbsp;<b id="best">0</b></span>
+        </div>
+
+        <canvas id="board" width="400" height="400" aria-label="Plateau du jeu"></canvas>
+
+        <!-- Overlays (Pause / Game Over) -->
+        <div id="overlay" class="status" hidden>
+          <div class="card">
+            <h2 id="overlayTitle"></h2>
+            <p id="overlayText"></p>
+            <div style="display:flex; gap:8px; justify-content:center;">
+              <button id="overlayPlay" class="primary">Jouer</button>
+              <button id="overlayResume" class="primary">Reprendre</button>
+              <button id="overlayReset" class="danger">Rejouer</button>
+            </div>
+          </div>
+        </div>
+        <div class="legend">
+            Contrôles : ↑ ↓ ← → ou Z Q S D • Pause : P • Évite les murs et ta queue • Manger la pomme = +1 et +0.5% vitesse
+        </div>
+      </div>
+
+  <script src="snakeScript.js"></script>
+</body>
+
+</html>
