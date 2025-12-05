@@ -1,31 +1,353 @@
-
-
 <!DOCTYPE html>
 <html lang="fr">
 <head>
     <meta charset="UTF-8">
-    <title>Faille XSS - Démonstration</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login - Rétro Gaming</title>
+    <link rel="stylesheet" href="style.css">
+    <style>
+        .login-container {
+            position: relative;
+            z-index: 10;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            padding: 100px 20px 40px;
+        }
+
+        .login-box {
+            background: rgba(20, 20, 20, 0.95);
+            border: 4px solid #00ffff;
+            border-radius: 25px;
+            padding: 50px 60px;
+            max-width: 500px;
+            width: 100%;
+            box-shadow: 0 0 40px rgba(0, 255, 255, 0.6), inset 0 0 30px rgba(0, 255, 255, 0.1);
+            animation: float 4s ease-in-out infinite;
+        }
+
+        @keyframes float {
+            0%, 100% { transform: translateY(0px); }
+            50% { transform: translateY(-15px); }
+        }
+
+        .login-title {
+            font-size: 48px;
+            font-weight: bold;
+            color: #ff00ff;
+            text-transform: uppercase;
+            letter-spacing: 6px;
+            text-align: center;
+            margin-bottom: 10px;
+            text-shadow: 0 0 20px #ff00ff, 0 0 40px #ff00ff;
+            animation: pulse 2s ease-in-out infinite;
+        }
+
+        @keyframes pulse {
+            0%, 100% { opacity: 1; }
+            50% { opacity: 0.7; }
+        }
+
+        .login-subtitle {
+            font-size: 18px;
+            color: #00ffff;
+            text-align: center;
+            margin-bottom: 40px;
+            text-shadow: 0 0 10px #00ffff;
+        }
+
+        .form-group {
+            margin-bottom: 30px;
+        }
+
+        .form-label {
+            display: block;
+            color: #ffff00;
+            font-size: 16px;
+            font-weight: bold;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            margin-bottom: 10px;
+            text-shadow: 0 0 10px #ffff00;
+        }
+
+        .form-input {
+            width: 100%;
+            padding: 15px 20px;
+            background: rgba(30, 30, 30, 0.8);
+            border: 3px solid #00ff00;
+            border-radius: 10px;
+            color: #ffffff;
+            font-family: 'Courier New', monospace;
+            font-size: 16px;
+            transition: all 0.3s;
+            box-shadow: 0 0 10px rgba(0, 255, 0, 0.3);
+        }
+
+        .form-input:focus {
+            outline: none;
+            border-color: #ff00ff;
+            box-shadow: 0 0 20px rgba(255, 0, 255, 0.6);
+            background: rgba(40, 40, 40, 0.9);
+        }
+
+        .form-input::placeholder {
+            color: #888888;
+        }
+
+        .remember-forgot {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 30px;
+        }
+
+        .checkbox-container {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            color: #ffffff;
+            font-size: 14px;
+            cursor: pointer;
+        }
+
+        .checkbox-container input[type="checkbox"] {
+            width: 18px;
+            height: 18px;
+            cursor: pointer;
+            accent-color: #ff00ff;
+        }
+
+        .forgot-link {
+            color: #00ffff;
+            text-decoration: none;
+            font-size: 14px;
+            transition: all 0.3s;
+            text-shadow: 0 0 5px #00ffff;
+        }
+
+        .forgot-link:hover {
+            color: #ff00ff;
+            text-shadow: 0 0 10px #ff00ff;
+        }
+
+        .submit-btn {
+            width: 100%;
+            padding: 18px;
+            background: linear-gradient(135deg, #ff00ff 0%, #ff0066 100%);
+            border: 3px solid #ff00ff;
+            border-radius: 10px;
+            color: #ffffff;
+            font-family: 'Courier New', monospace;
+            font-size: 20px;
+            font-weight: bold;
+            text-transform: uppercase;
+            letter-spacing: 3px;
+            cursor: pointer;
+            transition: all 0.3s;
+            box-shadow: 0 0 20px rgba(255, 0, 255, 0.5);
+        }
+
+        .submit-btn:hover {
+            background: linear-gradient(135deg, #ff0066 0%, #ff00ff 100%);
+            box-shadow: 0 0 35px rgba(255, 0, 255, 0.8);
+            transform: translateY(-3px);
+        }
+
+        .submit-btn:active {
+            transform: translateY(0);
+        }
+
+        .divider {
+            display: flex;
+            align-items: center;
+            margin: 30px 0;
+        }
+
+        .divider::before,
+        .divider::after {
+            content: '';
+            flex: 1;
+            height: 2px;
+            background: linear-gradient(90deg, transparent, #00ffff, transparent);
+        }
+
+        .divider span {
+            padding: 0 15px;
+            color: #00ffff;
+            font-size: 14px;
+            text-shadow: 0 0 10px #00ffff;
+        }
+
+        .social-login {
+            display: flex;
+            gap: 15px;
+            margin-bottom: 30px;
+        }
+
+        .social-btn {
+            flex: 1;
+            padding: 15px;
+            background: rgba(40, 40, 40, 0.9);
+            border: 3px solid #00ff00;
+            border-radius: 10px;
+            color: #00ff00;
+            font-family: 'Courier New', monospace;
+            font-size: 16px;
+            font-weight: bold;
+            cursor: pointer;
+            transition: all 0.3s;
+            box-shadow: 0 0 15px rgba(0, 255, 0, 0.3);
+        }
+
+        .social-btn:hover {
+            background: rgba(50, 50, 50, 0.95);
+            box-shadow: 0 0 25px rgba(0, 255, 0, 0.6);
+            transform: translateY(-2px);
+        }
+
+        .signup-link {
+            text-align: center;
+            color: #ffffff;
+            font-size: 16px;
+            margin-top: 25px;
+        }
+
+        .signup-link a {
+            color: #ffff00;
+            text-decoration: none;
+            font-weight: bold;
+            transition: all 0.3s;
+            text-shadow: 0 0 5px #ffff00;
+        }
+
+        .signup-link a:hover {
+            color: #ff00ff;
+            text-shadow: 0 0 10px #ff00ff;
+        }
+
+        .parallax-container-login {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: 1;
+            pointer-events: none;
+        }
+
+        .login-circle {
+            position: absolute;
+            border-radius: 50%;
+        }
+
+        .circle-login-1 {
+            top: 10%;
+            left: 5%;
+            width: 600px;
+            height: 600px;
+            background: radial-gradient(circle, transparent 0%, transparent 37.5%, #ff00ff 37.5%, #ff00ff 100%);
+            box-shadow: 0 0 80px rgba(255, 0, 255, 0.5);
+        }
+
+        .circle-login-2 {
+            top: 40%;
+            right: 5%;
+            width: 700px;
+            height: 700px;
+            background: radial-gradient(circle, transparent 0%, transparent 37.5%, #00ffff 37.5%, #00ffff 100%);
+            box-shadow: 0 0 80px rgba(0, 255, 255, 0.5);
+        }
+
+        .circle-login-3 {
+            bottom: -10%;
+            left: 30%;
+            width: 800px;
+            height: 800px;
+            background: radial-gradient(circle, transparent 0%, transparent 37.5%, #00ff00 37.5%, #00ff00 100%);
+            box-shadow: 0 0 80px rgba(0, 255, 0, 0.5);
+        }
+
+        .pixel-decoration {
+            position: absolute;
+            width: 20px;
+            height: 20px;
+            background: #ff00ff;
+            box-shadow: 0 0 10px #ff00ff;
+        }
+
+        .pixel-1 { top: 80px; left: 20px; }
+        .pixel-2 { top: 100px; left: 20px; }
+        .pixel-3 { top: 120px; left: 20px; }
+        .pixel-4 { top: 80px; right: 20px; background: #00ffff; box-shadow: 0 0 10px #00ffff; }
+        .pixel-5 { top: 100px; right: 20px; background: #00ffff; box-shadow: 0 0 10px #00ffff; }
+        .pixel-6 { top: 120px; right: 20px; background: #00ffff; box-shadow: 0 0 10px #00ffff; }
+    </style>
 </head>
+<body>
+    <header class="header">
+        <div class="header-content">
+            <div class="logo">RETRO GAME</div>
+            <nav>
+                <ul class="nav-menu">
+                    <li><a href="index.html">Home</a></li>
+                    <li><a href="game.html">Games</a></li>
+                    <li><a href="#">About</a></li>
+                </ul>
+            </nav>
+            <button class="login-btn" onclick="window.location.href='login.html'">Login</button>
+        </div>
+    </header>
 
-<body style="background:#111; color:white; font-family:monospace">
+    <div class="parallax-container-login">
+        <div class="login-circle circle-login-1"></div>
+        <div class="login-circle circle-login-2"></div>
+        <div class="login-circle circle-login-3"></div>
+    </div>
 
-    <h1>💬 Démonstration d'une faille XSS</h1>
+    <div class="login-container">
+        <div class="login-box">
+            <div class="pixel-decoration pixel-1"></div>
+            <div class="pixel-decoration pixel-2"></div>
+            <div class="pixel-decoration pixel-3"></div>
+            <div class="pixel-decoration pixel-4"></div>
+            <div class="pixel-decoration pixel-5"></div>
+            <div class="pixel-decoration pixel-6"></div>
 
-    <p>Écris un message ci-dessous. Le site va l'afficher directement.</p>
+            <h1 class="login-title">LOGIN</h1>
+            <p class="login-subtitle">Enter the Game</p>
 
-    <input id="msg" type="text" placeholder="Écris ici...">
-    <button onclick="afficher()">Envoyer</button>
+            <form id="loginForm">
+                <div class="form-group">
+                    <label class="form-label" for="username">Username</label>
+                    <input type="text" id="username" class="form-input" placeholder="Enter your username" required>
+                </div>
 
-    <h2>📌 Message affiché :</h2>
-    <div id="zone" style="padding:10px; background:#222; border:1px solid #444;"></div>
+                <div class="form-group">
+                    <label class="form-label" for="password">Password</label>
+                    <input type="password" id="password" class="form-input" placeholder="Enter your password" required>
+                </div>
+            </form>
+
+            <div class="divider">
+            </div>
+        </div>
+    </div>
 
     <script>
-        function afficher() {
-            // ❌ FAILLE XSS : on met directement ce que l'utilisateur écrit dans innerHTML
-            document.getElementById("zone").innerHTML =
-                document.getElementById("msg").value;
-        }
-    </script>
+        window.addEventListener('scroll', function() {
+            const parallaxContainer = document.querySelector('.parallax-container-login');
+            if (parallaxContainer) {
+                const scrolled = window.pageYOffset;
+                parallaxContainer.style.transform = 'translateY(' + (scrolled * 0.4) + 'px)';
+            }
+        });
 
+        document.getElementById('loginForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+            alert('Welcome back, Player One! 🎮');
+        });
+    </script>
 </body>
 </html>
